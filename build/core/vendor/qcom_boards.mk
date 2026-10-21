@@ -14,6 +14,7 @@ KALAMA := kalama # SM8550
 CROW := crow
 PINEAPPLE := pineapple # SM8650
 VOLCANO := volcano
+SUN := sun # SM8750
 
 # Board platforms lists to be used for
 # PRODUCT_BOARD_PLATFORM specific featurization
@@ -42,3 +43,4 @@ QCOM_BOARD_PLATFORMS += $(PARROT)
 QCOM_BOARD_PLATFORMS += $(KALAMA)
 QCOM_BOARD_PLATFORMS += $(PINEAPPLE)
 QCOM_BOARD_PLATFORMS += $(VOLCANO)
+QCOM_BOARD_PLATFORMS += $(SUN)
