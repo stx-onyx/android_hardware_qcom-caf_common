@@ -318,7 +318,12 @@ QCOM_SOONG_NAMESPACE ?= hardware/qcom-caf/$(QCOM_HARDWARE_VARIANT)
 PRODUCT_SOONG_NAMESPACES += $(QCOM_SOONG_NAMESPACE)
 
 # Define kernel headers location
+# GKI platforms like sun have no headers in hardware/qcom-caf/kernel-headers.
+# Their devices ship them with the prebuilt kernel instead, and soong fails
+# on header directories that don't exist, so only add the ones that do.
+ifneq ($(wildcard hardware/qcom-caf/$(QCOM_HARDWARE_VARIANT)/kernel-headers),)
 PRODUCT_VENDOR_KERNEL_HEADERS += hardware/qcom-caf/$(QCOM_HARDWARE_VARIANT)/kernel-headers
+endif
 
 # Add bootctrl to PRODUCT_SOONG_NAMESPACES
 PRODUCT_SOONG_NAMESPACES += hardware/qcom-caf/bootctrl
