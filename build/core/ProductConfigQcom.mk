@@ -365,6 +365,14 @@ ifneq ($(USE_DEVICE_SPECIFIC_DATASERVICES),true)
     PRODUCT_SOONG_NAMESPACES += vendor/qcom/opensource/dataservices
 endif
 
+# Add the AudioReach sound trigger HAL to PRODUCT_SOONG_NAMESPACES on
+# AudioReach platforms, and point it at the platform's PAL
+ifneq ($(filter $(UM_6_6_FAMILY),$(TARGET_BOARD_PLATFORM)),)
+    PRODUCT_SOONG_NAMESPACES += vendor/qcom/opensource/audio-hal/st-hal-ar
+    $(call soong_config_set,qtiaudio,headers_namespace,$(QCOM_SOONG_NAMESPACE))
+    $(call soong_config_set,qtiaudio,libarpal_namespace,$(QCOM_SOONG_NAMESPACE))
+endif
+
 # Add nxp opensource to PRODUCT_SOONG_NAMESPACES if needed
 ifeq ($(USE_NQ_NFC),true)
     PRODUCT_SOONG_NAMESPACES += vendor/nxp/opensource
